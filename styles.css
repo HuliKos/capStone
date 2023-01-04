@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Navigation */
+
+.nav-container{
+    background: #D0B8A8;
+    height: 145px;
+}
+
+.nav-webName {
+    font-family: 'Housttely Signature', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 65px;
+    display: fle;
+    align-items: center;
+    text-transform: capitalize;
+    font-feature-settings: 'liga' off;
+    color: #815B5B;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-left: 20px;
+}
+
+.nav-subPages {
+    font-family: 'Savoye LET', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 70px;
+    color: #815B5B;
+    position: relative;
+    left: 75%;
+    padding: 30px;
+}
+
+/* Content Boxes */
+.content{
+    position: relative;
+}
+
+.box {
+    background: #F8EDE3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+#aboutToday{
+    position: absolute;
+    width: 30%;
+    height: 218px;
+    left: 5%;
+    top: 100px;
+}
+
+#aboutTomorrow{
+    position: absolute;
+    width: 30%;
+    height: 218px;
+    left: 5%;
+    top: 382px;
+}
+
+#randomQuote{
+    position: absolute;
+    width: 30%;
+    height: 218px;
+    left: 5%;
+    top: 660px;
+}
+
+#sideBar {
+    position: absolute;
+    width: 9%;
+    height: 778px;
+    right: 5%;
+    top: 100px;
+}
+
+#visionBoard {
+    position: absolute;
+    width: 45%;
+    height: 778px;
+    right: 17%;
+    top: 100px;
+}
+
+#visionBoard > #vb {
+    position: absolute;
+    width: 100%;
+    height: 725px;
+    top: 55px;
+    border-radius: 15px;
+}
+.box-title {
+    margin: 15px;
+    font-family: 'Savoye LET', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    display: flex;
+    align-items: center;
+
+    color: #554348;
+}
+
+.box-content {
+    font-family: 'Asbigan', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+
+    color: #554348;
+}
+
+
+/* Site Info */
+
+.site-info{
+    position: absolute;
+    width: 100%;
+    height: 183px;
+    left: 0px;
+    bottom: 0px;
+    background: #554348;
+}
+
+.siteInfo-titles {
+    font-family: 'Savoye LET', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 59px;
+    line-height: 70px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
