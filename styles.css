@@ -16,13 +16,12 @@
     font-style: normal;
     font-weight: 400;
     font-size: 65px;
-    display: fle;
     align-items: center;
     text-transform: capitalize;
     font-feature-settings: 'liga' off;
     color: #815B5B;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-left: 20px;
+    margin-left: 100px;
 }
 
 .nav-subPages {
@@ -31,15 +30,18 @@
     font-weight: 400;
     font-size: 40px;
     line-height: 70px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #815B5B;
     position: relative;
-    left: 75%;
+    left: 69%;
     padding: 30px;
 }
 
 /* Content Boxes */
 .content{
     position: relative;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .box {
@@ -104,7 +106,7 @@
     line-height: 48px;
     display: flex;
     align-items: center;
-
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #554348;
 }
 
@@ -130,17 +132,20 @@
     height: 183px;
     left: 0px;
     bottom: 0px;
+    padding: 0px;
     background: #554348;
+    font-family: 'Savoye LET', sans-serif;
+    margin: 0px;
+    display:flex;
+    justify-content: space-evenly;
 }
 
 .siteInfo-titles {
-    font-family: 'Savoye LET', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 59px;
+    font-size: 40px;
     line-height: 70px;
-    display: flex;
-    align-items: center;
-
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #000000;
 }
+
