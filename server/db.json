@@ -1,14 +1,14 @@
 [
 {
     "id": 1,
-    "content":"todo1"
+    "content":"Complete the Bootcamp"
 },
 {
     "id": 2,
-    "content":"todo2"
+    "content":"Join Perficient"
 },
 {
     "id": 3,
-    "content":"todo3"
+    "content":"Never use Todo list again"
 }
 ]
