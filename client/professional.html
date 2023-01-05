@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lan's capstone project #1">
+    <meta name="author" content="Lan Kostrikin">
+    <title>Lan's professional page</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+    
+<nav>
+    <h1>
+        <span class="nav-webName">Good Night</span>
+        <a class="nav-subPages" href="./index.html">home</a>
+        <a class="nav-subPages" href="./personal.html">personal</a>
+    </h1>
+</nav>
+
+
+<main>
+    <p id="welcomeLine">Dear <input type="text" class="name" id="firstName"> <input type="text" class="name" id="lastName">, relax and enjoy your evening.</p>
+
+    <content class="box" id = "calendarNextDay">
+        <button class="authorizeBtn" id="authorize_button" onclick="handleAuthClick()">Authorize through Google</button>
+        <button class="authorizeBtn" id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+
+        <pre id="content" style="white-space: pre-wrap;"></pre>
+
+        <script type="text/javascript">
+        /* exported gapiLoaded */
+        /* exported gisLoaded */
+        /* exported handleAuthClick */
+        /* exported handleSignoutClick */
+
+        // TODO(developer): Set to client ID and API key from the Developer Console
+        const CLIENT_ID = '449178681339-fvue7rj0u194s1gqc1gjs9dl21o83fp9.apps.googleusercontent.com';
+        const API_KEY = 'AIzaSyBh-ukKfqC9QbU7jEM0eLxyBAaQojMFsOc';
+
+        // Discovery doc URL for APIs used by the quickstart
+        const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+
+        // Authorization scopes required by the API; multiple scopes can be
+        // included, separated by spaces.
+        const SCOPES = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly';
+
+        let tokenClient;
+        let gapiInited = false;
+        let gisInited = false;
+
+        //   document.getElementById('authorize_button').style.visibility = 'hidden';
+        //   document.getElementById('signout_button').style.visibility = 'hidden';
+
+        /**
+         * Callback after api.js is loaded.
+         */
+        function gapiLoaded() {
+            gapi.load('client', initializeGapiClient);
+        }
+
+        /**
+         * Callback after the API client is loaded. Loads the
+         * discovery doc to initialize the API.
+         */
+        async function initializeGapiClient() {
+            await gapi.client.init({
+            apiKey: API_KEY,
+            discoveryDocs: [DISCOVERY_DOC],
+            });
+            gapiInited = true;
+            maybeEnableButtons();
+        }
+
+        /**
+         * Callback after Google Identity Services are loaded.
+         */
+        function gisLoaded() {
+            tokenClient = google.accounts.oauth2.initTokenClient({
+            client_id: CLIENT_ID,
+            scope: SCOPES,
+            callback: '', // defined later
+            });
+            gisInited = true;
+            maybeEnableButtons();
+        }
+
+        /**
+         * Enables user interaction after all libraries are loaded.
+         */
+        function maybeEnableButtons() {
+            if (gapiInited && gisInited) {
+            document.getElementById('authorize_button').style.visibility = 'visible';
+            }
+        }
+
+        /**
+         *  Sign in the user upon button click.
+         */
+        function handleAuthClick() {
+            tokenClient.callback = async (resp) => {
+            if (resp.error !== undefined) {
+                throw (resp);
+            }
+            document.getElementById('signout_button').style.visibility = 'visible';
+            document.getElementById('authorize_button').innerText = 'Refresh';
+            await listUpcomingEvents();
+            };
+
+            if (gapi.client.getToken() === null) {
+            // Prompt the user to select a Google Account and ask for consent to share their data
+            // when establishing a new session.
+            tokenClient.requestAccessToken({prompt: 'consent'});
+            } else {
+            // Skip display of account chooser and consent dialog for an existing session.
+            tokenClient.requestAccessToken({prompt: ''});
+            }
+        }
+
+        /**
+         *  Sign out the user upon button click.
+         */
+        function handleSignoutClick() {
+            const token = gapi.client.getToken();
+            if (token !== null) {
+            google.accounts.oauth2.revoke(token.access_token);
+            gapi.client.setToken('');
+            document.getElementById('content').innerText = '';
+            document.getElementById('authorize_button').innerText = 'Authorize';
+            document.getElementById('signout_button').style.visibility = 'hidden';
+            }
+        }
+
+        /**
+         * Print the summary and start datetime/date of the next ten events in
+         * the authorized user's calendar. If no events are found an
+         * appropriate message is printed.
+         */
+        async function listUpcomingEvents() {
+            let response;
+            try {
+            const request = {
+                'calendarId': 'primary',
+                'timeMin': (new Date()).toISOString(),
+                'showDeleted': false,
+                'singleEvents': true,
+                'maxResults': 1,
+                'orderBy': 'startTime',
+            };
+            response = await gapi.client.calendar.events.list(request);
+            } catch (err) {
+            document.getElementById('content').innerText = err.message;
+            return;
+            }
+
+            const events = response.result.items;
+            if (!events || events.length == 0) {
+            document.getElementById('content').innerText = 'No events found.';
+            return;
+            }
+            // Flatten to string to display
+            const output = events.reduce(
+                (str, event) => `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
+                'Events:\n');
+            document.getElementById('content').innerText = output;
+        }
+        </script>
+        <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+        <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+            <p id="content"></p>
+    </content>
+
+    <content class="box" id = "toDoList">
+        <h2 class="box-title">To do list - next day</h2>
+        <h3 class="box-content" id="todayInput">Input: Key data points for the day</h3>
+    </content>
+        
+    <content class="box" id = "improvement">
+        <h2 class="box-title">Improvement point</h2>
+        <input type="text" id="improvementInput">
+    </content>
+
+    <div class="box" id = "sideBar">
+        <h2 class="box-title">Quick links</h2>
+        <h3 class="box-content">Input: API links</h3>
+    </div>
+        
+</main>
+        
+<footer class="site-info">
+    <div class="info-block" id="company">
+        <h1 class ="siteInfo-titles">Company</h1>
+        <button class="details">About</button>
+        <button class="details">Careers</button>
+        <button class="details">Press</button>
+        <button class="details">Blog</button>
+    </div>
+
+    <div class="info-block" id="offers">
+        <h1 class ="siteInfo-titles">Offers</h1>
+        <button class="details">Buy a Gift</button>
+        <button class="details">Redeem a Gift</button>
+        <button class="details">Family Plan</button>
+    </div>
+    
+    <div class="info-block" id="help">
+        <h1 class ="siteInfo-titles">Help</h1>
+        <button class="details">FAQ</button>
+        <button class="details">Contact Us</button>
+        <button class="details">Terms</button>
+        <button class="details">Privacy</button>
+    </div>
+
+<footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+    <script>
+    VANTA.FOG({
+      el: "main",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      highlightColor: 0xa79c82,
+      midtoneColor: 0x666051,
+      lowlightColor: 0x664f24,
+      baseColor: 0xe1c7ac,
+      blurFactor: 0.57,
+      speed: 0.90,
+      zoom: 0.80
+    })
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./index.js"></script>
+</body>
+</html>
