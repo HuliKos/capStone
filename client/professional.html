@@ -23,8 +23,6 @@
 
 
 <main>
-    <p id="welcomeLine">Dear <input type="text" class="name" id="firstName"> <input type="text" class="name" id="lastName">, relax and enjoy your evening.</p>
-
     <content class="box" id = "calendarNextDay">
         <button class="authorizeBtn" id="authorize_button" onclick="handleAuthClick()">Authorize through Google</button>
         <button class="authorizeBtn" id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
@@ -223,15 +221,16 @@
       mouseControls: true,
       touchControls: true,
       gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
+      minHeight: 1000.00,
+      minWidth: 1000.00,
       highlightColor: 0xa79c82,
       midtoneColor: 0x666051,
       lowlightColor: 0x664f24,
       baseColor: 0xe1c7ac,
       blurFactor: 0.57,
       speed: 0.90,
-      zoom: 0.80
+      zoom: 0.80,
+      scale: 1.00
     })
     </script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

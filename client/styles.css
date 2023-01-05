@@ -54,35 +54,6 @@ nav {
     
 }
 
-/* #content {
-    position: absolute;
-    width: 80%;
-    height: 600px;
-    top: 140px;
-    margin-left: 10%;
-    color: #554348;
-    border-style: hidden;
-    background-color:#D0B8A8;
-    border-radius: 5px;
-    font-family: 'Asbigan', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 27px;
-} */
-
-
-#welcomeLine {
-    font-family: 'Savoye LET', sans-serif;
-    font-size: 40px;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    color: #815B5B;
-    display: contents;
-    justify-content: center;
-    margin-top: 90px;
-    
-}
-
 .name {
     border: none;
     font-family: 'Savoye LET', sans-serif;
@@ -205,9 +176,10 @@ main {
     border-radius: 5px;
     font-family: 'Asbigan', sans-serif;
     font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
+    font-weight: 300;
+    font-size: 10px;
     line-height: 27px;
+    
 }
 
 #reflection {
@@ -359,9 +331,6 @@ button.box-title {
     padding: 10px 10px 0px 10px;
     text-align:justify;
 }
-
-
-
 
 /* Site Info */
 
