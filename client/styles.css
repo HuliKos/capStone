@@ -134,6 +134,23 @@ main {
     line-height: 27px;
 }
 
+#dateInput {
+    position: absolute;
+    width: 30%;
+    height: 30px;
+    color: #554348;
+    border-style: hidden;
+    background-color:#D0B8A8;
+    border-radius: 5px;
+    font-family: 'Asbigan', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    top: 17px;
+    margin-left: 245px;
+}
+
 #toDoInputBtn {
     font-family: 'Savoye LET', sans-serif;
     font-size: 30px;
@@ -146,6 +163,21 @@ main {
     height: 50px;
     top: 60px;
     margin-left: 875px;
+    color: #554348;
+}
+
+#journalGrabBtn {
+    font-family: 'Savoye LET', sans-serif;
+    font-size: 30px;
+    background:#D0B8A8;
+    border-radius: 15px;
+    border-color:#D0B8A8;
+    padding: 10px 10px 0px 10px;
+    position:absolute;
+    width: 25%;
+    height: 50px;
+    top: 7px;
+    margin-left: 700px;
     color: #554348;
 }
 
@@ -190,7 +222,7 @@ main {
     top: 455px;
 }
 
-#reflectionInput {
+#pastJournalHere {
     position: absolute;
     width: 98%;
     height: 350px;
@@ -200,11 +232,8 @@ main {
     border-style: hidden;
     background-color:#D0B8A8;
     border-radius: 5px;
-    font-family: 'Asbigan', sans-serif;
-    font-style: normal;
-    font-weight: 400;
+    font-family: 'Savoye LET', sans-serif;
     font-size: 20px;
-    line-height: 27px;
 }
 
 .box {

@@ -1,3 +1,5 @@
+
+
 // get DOM element
 let inspirationBtn = document.querySelector('#inspiration-button')
 

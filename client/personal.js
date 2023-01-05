@@ -1,6 +1,10 @@
 const viewAllBtn = document.getElementById('viewCurrentBtn')
 const toDoContainer = document.getElementById('currentToDo')
-const form = document.querySelector('form')
+const form1 = document.getElementById('form1')
+const form2 = document.getElementById('form2')
+const pastJournalInput = document.getElementById('dateInput')
+const journalContainer = document.getElementById('pastJournalHere')
+
 
 const baseURL = `http://localhost:5050/api/todos`
 
@@ -28,6 +32,31 @@ const createToDo = (body) =>{
     .catch((err) => console.log(err))
 }
 
+const pastJournal = (event) =>{
+    event.preventDefault()
+
+    let bodyObj ={
+        input: pastJournalInput.value
+    }
+
+    
+    axios.post(`http://localhost:5050/journal`,bodyObj)
+    .then((res) => {let data = res.data
+        console.log(res.data[0].journal_content)
+        journalContainer.innerHTML =``
+        
+        for(let i=0; i<data.length; i++) {
+            const journal = document.createElement('div')
+            journal.innerHTML = `
+            <h1>${data[0].journal_content}</h1>
+            `
+            journalContainer.appendChild(journal)
+        }
+        })
+    .catch((err) => console.log(err))
+}
+
+
 function submitHandler(event) {
     event.preventDefault()
 
@@ -42,8 +71,15 @@ function submitHandler(event) {
     input.value = ''
 }
 
-form.addEventListener('submit', submitHandler)
+form1.addEventListener('submit', submitHandler)
 viewAllBtn.addEventListener('click', getCurrentToDo)
+form2.addEventListener('submit', pastJournal)
+
+
+
+
+
+
 
 const siteInfoBtn = document.querySelectorAll('.details')
 console.log(siteInfoBtn)

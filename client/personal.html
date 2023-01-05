@@ -30,7 +30,7 @@
     <content class="box" id = "toDoList">
         <button id="viewCurrentBtn">View current</button>
         <h2 class="box-title">To do list - next day</h2>
-        <form>
+        <form id="form1">
             <input type="text" id="toDoInput" placeholder="Enter a new item here">
             <button type="submit" id="toDoInputBtn">Add</button>
         </form>
@@ -38,8 +38,12 @@
     </content>
         
     <content class="box" id = "reflection">
-        <h2 class="box-title">Reflection of the day</h2>
-        <input type="text" id="reflectionInput" placeholder="Journal here">
+        <h2 class="box-title">Review past journals</h2>
+        <p type="text" id="pastJournalHere" placeholder="Journal here"></p>
+        <form id="form2">
+            <input type="text" id="dateInput" placeholder="Enter the past date in format of xxxx-xx-xx">
+            <button type="submit" id="journalGrabBtn">Click to fetch the journal</button>
+        </form>
     </content>
 
     <div class="box" id = "sideBar">
