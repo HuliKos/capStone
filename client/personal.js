@@ -1,19 +1,17 @@
-// console.log(window.location.pathname)
-
-// const { getToDoList } = require('../server/controller.js').getToDoList
-
 let viewAllBtn = document.getElementById('viewCurrentBtn')
 
 const toDoContainer = document.getElementById('#currentToDo')
 const form = document.querySelector('form')
 
-const baseURL = `http://localhost:5500/api/todos`
+const baseURL = `http://localhost:5050/api/todos`
 
-const toDoCallback = ({data:todos}) => displayToDo(todos)
+const toDoCallback = ({data:toDo}) => displayToDo(toDo)
 const errCallback = err => console.log(err.response.data)
 
-
-const getCurrentToDo = () => axios.get(baseURL).then(toDoCallback).catch(errCallback)
+const getCurrentToDo = () => axios.get(baseURL).then((res) => {
+    console.log(res.data)
+    toDoCallback}
+    ).catch(errCallback)
 const deleteToDo = id => axios.delete(`${baseURL}/${id}`).then(toDoCallback).catch(errCallback)
 
 function submitHandler(event) {
@@ -51,9 +49,3 @@ function displayToDo(arr) {
 form.addEventListener('submit', submitHandler)
 
 viewAllBtn.addEventListener('click', getCurrentToDo)
-
-
-
-
-
-// getToDoList()
